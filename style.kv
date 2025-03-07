@@ -1,0 +1,500 @@
+<GMCCalculatorLayout>:
+    orientation: 'vertical'
+    spacing: dp(10)
+    padding: dp(10)
+
+    canvas.before:
+        Color:
+            rgba: hex('ffffff')
+        Rectangle:
+            pos:self.pos
+            size:self.size
+
+    #:import hex kivy.utils.get_color_from_hex
+
+    BoxLayout:
+        size_hint_y: 0.1
+        spacing: dp(10)
+
+        canvas.before:
+            Color:
+                rgba: hex('52796f')
+            Rectangle:
+                pos:self.pos
+                size:self.size
+
+        Label:
+            padding : 10,0,0,0
+            text: "[b]GMC CALCULATOR v0.1[/b]"
+            markup: True
+            font_size: '20sp'
+            text_size: self.size
+            halign: 'left'
+            valign: 'middle'
+
+        Label:
+            text: "https://gmccalculator.io"
+            font_size: '14sp'
+            text_size: self.size
+            halign: 'right'
+            valign: 'middle'
+            padding: 0,0,10,0
+
+
+    GridLayout:
+        cols: 6
+        size_hint_y: 0.07
+        spacing: dp(5)
+        padding: 0, 3, 0, 0
+
+        Button:
+            text: "SELECT IMAGE"
+            background_normal: ''
+            background_color: hex('52796f')
+            on_release: root.show_file_chooser()
+
+        Button:
+            id: ml_rf
+            name: 'ml_rf'
+            text: "RANDOM FOREST"
+            background_normal: ''
+            background_color: hex('84a98c')
+            on_press: root.change_style(self)
+
+        Button:
+            id: ml_mlp
+            name: 'ml_mlp'
+            text: "MLP"
+            background_normal: ''
+            background_color: hex('84a98c')
+            on_press: root.change_style(self)
+
+        Button:
+            id: ml_svr
+            name: 'ml_svr'
+            text: "SVR"
+            background_normal: ''
+            background_color: hex('84a98c')
+            on_press: root.change_style(self)
+
+        Button:
+            id: ml_mlr
+            name: 'ml_mlr'
+            text: "MLR"
+            background_normal: ''
+            background_color: hex('84a98c')
+            on_press: root.change_style(self)
+
+        Button:
+            id: ml_run
+            name: 'ml_run'
+            text: "RUN NOW"
+            background_normal: ''
+            background_color: hex('2f3e46')
+            on_press: root.goo(self)
+
+# ---------------------- LEFT NAV BAR ---------------------- #
+
+    Widget:
+        size_hint_y: 0.04
+
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_x: 1
+        spacing: dp(50)
+
+        BoxLayout:
+            padding: 0, 0, 0, 0
+            size_hint_x: 0.13
+            orientation: 'vertical'
+
+            Label:
+                text: "GRAIN TYPE"
+                markup: False
+                size_hint_x: 1
+                size_hint_y: 0.09
+                padding: 0, 0, 0, 0
+                text_size: self.size[0], self.height - self.padding[3]
+                valign: 'middle'
+                halign: 'center'
+
+                canvas.before:
+                    Color:
+                        rgba: hex('52796f')
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+
+            Widget:
+                size_hint_y: 0.02
+
+            GridLayout:
+                cols: 1
+                size_hint_x: 1
+                spacing: dp(5)
+
+                Button:
+                    id: crop_wheat
+                    name: 'crop_wheat'
+                    text: "Wheat"
+                    color: 0, 0, 0, 1
+                    size_hint_y: 0.17
+                    background_normal: ''
+                    background_color: 1, 1, 1, 1
+                    on_press: root.change_style2(self)
+
+                    canvas.before:
+                        Color:
+                            rgba: 0, 0, 0, 1  # Border color (red)
+                        Line:
+                            rectangle: (self.x, self.y, self.width, self.height)
+                            width: 1
+
+                Button:
+                    id: crop_rice
+                    name: 'crop_rice'
+                    text: "Rice"
+                    color: 0, 0, 0, 1
+                    size_hint_y: 0.17
+                    background_normal: ''
+                    background_color: 1, 1, 1, 1
+                    on_press: root.change_style2(self)
+
+                    canvas.before:
+                        Color:
+                            rgba: 0, 0, 0, 1  # Border color (red)
+                        Line:
+                            rectangle: (self.x, self.y, self.width, self.height)
+                            width: 1
+
+                Button:
+                    id: crop_corn
+                    name: 'crop_corn'
+                    text: "Corn"
+                    color: 0, 0, 0, 1
+                    size_hint_y: 0.17
+                    background_normal: ''
+                    background_color: 1, 1, 1, 1
+                    on_press: root.change_style2(self)
+
+                    canvas.before:
+                        Color:
+                            rgba: 0, 0, 0, 1  # Border color (red)
+                        Line:
+                            rectangle: (self.x, self.y, self.width, self.height)
+                            width: 1
+
+                Button:
+                    id: crop_barley
+                    name: 'crop_barley'
+                    text: "Barley"
+                    color: 0, 0, 0, 1
+                    size_hint_y: 0.17
+                    background_normal: ''
+                    background_color: 1, 1, 1, 1
+                    on_press: root.change_style2(self)
+
+                    canvas.before:
+                        Color:
+                            rgba: 0, 0, 0, 1  # Border color (red)
+                        Line:
+                            rectangle: (self.x, self.y, self.width, self.height)
+                            width: 1
+
+                Button:
+                    id: crop_sorghum
+                    name: 'crop_sorghum'
+                    text: "Sorghum"
+                    color: 0, 0, 0, 1
+                    size_hint_y: 0.17
+                    background_normal: ''
+                    background_color: 1, 1, 1, 1
+                    on_press: root.change_style2(self)
+
+                    canvas.before:
+                        Color:
+                            rgba: 0, 0, 0, 1  # Border color (red)
+                        Line:
+                            rectangle: (self.x, self.y, self.width, self.height)
+                            width: 1
+
+    # --------------------- 2ND LEFT NAV ----------- #
+
+                Widget:
+                    size_hint_y: 0.123
+
+                Label:
+                    id: label_graphs
+                    opacity: 0
+                    text: "GRAPHS"
+                    size_hint_y: 0.18
+
+                    canvas.before:
+                        Color:
+                            rgba: hex('52796f')
+                        Rectangle:
+                            size: self.size
+                            pos: self.pos
+
+                GridLayout:
+                    id: grid_graphs
+                    opacity: 0
+                    cols: 1
+                    size_hint_x: 0.2
+                    size_hint_y: 1
+                    spacing: dp(5)
+
+                    Button:
+                        text: "Histogram"
+                        color: 0, 0, 0, 1
+                        background_normal: ''
+                        size_hint_y: 0.15
+                        background_color: 1, 1, 1, 1
+
+                        canvas.before:
+                            Color:
+                                rgba: 0, 0, 0, 1  # Border color (red)
+                            Line:
+                                rectangle: (self.x, self.y, self.width, self.height)
+                                width: 1
+
+                    Button:
+                        text: "Confusion Matrix"
+                        color: 0, 0, 0, 1
+                        background_normal: ''
+                        size_hint_y: 0.15
+                        background_color: 1, 1, 1, 1
+
+                        canvas.before:
+                            Color:
+                                rgba: 0, 0, 0, 1  # Border color (red)
+                            Line:
+                                rectangle: (self.x, self.y, self.width, self.height)
+                                width: 1
+
+                    Button:
+                        text: "ROC Curve"
+                        color: 0, 0, 0, 1
+                        size_hint_y: 0.15
+                        background_normal: ''
+                        background_color: 1, 1, 1, 1
+
+                        canvas.before:
+                            Color:
+                                rgba: 0, 0, 0, 1  # Border color (red)
+                            Line:
+                                rectangle: (self.x, self.y, self.width, self.height)
+                                width: 1
+
+                    Button:
+                        text: "Precision-Recall Curve"
+                        color: 0, 0, 0, 1
+                        background_normal: ''
+                        size_hint_y: 0.15
+                        background_color: 1, 1, 1, 1
+
+                        canvas.before:
+                            Color:
+                                rgba: 0, 0, 0, 1  # Border color (red)
+                            Line:
+                                rectangle: (self.x, self.y, self.width, self.height)
+                                width: 1
+
+                    Button:
+                        text: "Learning Curve"
+                        color: 0, 0, 0, 1
+                        background_normal: ''
+                        size_hint_y: 0.15
+                        background_color: 1, 1, 1, 1
+
+                        canvas.before:
+                            Color:
+                                rgba: 0, 0, 0, 1  # Border color (red)
+                            Line:
+                                rectangle: (self.x, self.y, self.width, self.height)
+                                width: 1
+                Widget:
+                    size_hint_y: 0.13
+
+# --------------- RESULT SECTION ------------ #
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: dp(20)
+            size_hint_x: 0.6
+
+            GridLayout:
+                cols: 2
+                spacing: dp(20)
+                padding: 0, 0, 0, 0
+                size_hint_x: 1
+
+
+                BoxLayout:
+                    orientation: 'vertical'
+                    size_hint_x: 0.5
+                    size_hint_y: 1
+
+                    canvas.before:
+                        Color:
+                            rgba: 0, 0, 0, 1  # Border color (red)
+                        Line:
+                            rectangle: (self.x, self.y, self.width, self.height)
+                            width: 1
+
+                    Label:
+                        text: "IMAGES"
+                        size_hint_y: 0.15
+                        padding: 0, 0, 0, 0
+
+                        canvas.before:
+                            Color:
+                                rgba: hex('52796f')
+                            Rectangle:
+                                pos:self.pos
+                                size:self.size
+                            Color:
+                                rgba: 0, 0, 0, 0  # Border color (red)
+                            Line:
+                                rectangle: (self.x, self.y, self.width, self.height)
+                                width: 1
+
+                    Image:
+                        id: image
+                        source: ''
+
+                BoxLayout:
+                    orientation: 'vertical'
+                    size_hint_x: None
+                    width: min(self.parent.width * 0.5, 600)
+                    size_hint_y: 1
+
+                    canvas.before:
+                        Color:
+                            rgba: 0, 0, 0, 1
+                        Line:
+                            rectangle: (self.x, self.y, self.width, self.height)
+                            width: 1
+
+                    Label:
+                        text: "RESULT"
+                        markup: True
+                        size_hint_y: None
+                        height: dp(43)
+
+                        canvas.before:
+                            Color:
+                                rgba: hex('52796f')
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                            Color:
+                                rgba: 0, 0, 0, 1
+                            Line:
+                                rectangle: (self.x, self.y, self.width, self.height)
+                                width: 1
+
+                    Widget:
+                        size_hint_y: None
+                        height: dp(90)
+
+                    Label:
+                        id: label_result
+                        text: ""
+                        font_size: sp(80)  # Adjusting dynamically
+                        markup: True
+                        padding: 0, 0, 0, 0
+                        color: 0, 0, 0, 1
+
+                    Widget:
+                        size_hint_y: None
+                        height: dp(37)
+
+                    Label:
+                        id: label_msg
+                        text: ""
+                        font_size: '20sp'
+                        size_hint_y: None
+                        size: self.texture_size
+                        padding: 0, 0, 0, 0
+                        color: 0, 0, 0, 1
+
+                    Label:
+                        id: label_suggest
+                        text: ""
+                        size_hint_y: None
+                        text_size: self.width - dp(50), None
+                        padding: 0, 0, 0, 0
+                        font_size: '16sp'
+                        color: 0, 0, 0, 1
+
+                    Widget:
+                        name: 'spacer'
+
+
+# --------------------- COMMAND LOG SECTION -----------------------
+
+            GridLayout:
+                cols: 1
+                size_hint_y: 0.5
+                pos_hint: {"x": 0, "top": 1}
+                canvas.before:
+                    Color:
+                        rgba: 0, 0, 0, 1  # Border color (black)
+                    Line:
+                        rectangle: (self.x, self.y, self.width, self.height)
+                        width: 1
+
+                Label:
+                    text: "COMMAND LOG"
+                    markup: True
+                    size_hint_y: None
+                    height: dp(50)  # Fixed height for the label
+
+                    canvas.before:
+                        Color:
+                            rgba: hex('52796f')
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                        Color:
+                            rgba: 0, 0, 0, 1  # Border color
+                        Line:
+                            rectangle: (self.x, self.y, self.width, self.height)
+                            width: 1
+
+                Label:
+                    id: label_command
+                    text: ""
+                    font_size: '14sp'
+                    markup: True
+                    size_hint_y: None
+                    height: 77  # Fixed height for the label
+                    text_size: self.size[0] - 50, self.size[1]
+                    color: 0, 0, 0, 1
+            Widget:
+                size_hint_y: None
+                height: dp(10)
+
+<FileChooserPopup>:
+    title: "Select a file"
+    size_hint: 0.5, 0.7
+
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: dp(10)
+
+        FileChooserListView:
+            id: fileChooser
+            size_hint_y: 0.9
+
+        GridLayout:
+            cols: 2
+            size_hint_y: 0.1
+
+            Button:
+                text: 'Select'
+                on_press: root.fileSelected()
+
+            Button:
+                text: 'Cancel'
+                on_press: root.fileCancel()

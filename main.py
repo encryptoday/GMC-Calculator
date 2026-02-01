@@ -4,6 +4,7 @@ from kivy.core.window import Window
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.popup import Popup
 from kivy.uix.filechooser import FileChooserListView
+from kivy.properties import StringProperty
 from includes import predict
 import threading
 from time import sleep
@@ -13,6 +14,16 @@ import random
 Builder.load_file("style.kv")
 
 Window.size = (1236, 700)
+
+class ImagePopup(Popup):
+    # Declare properties here (outside __init__) so the KV file can see them
+    img_source = StringProperty("")
+    title_text = StringProperty("")
+
+    def __init__(self, img_source, title_text, **kwargs):
+        super().__init__(**kwargs)
+        self.img_source = img_source
+        self.title_text = title_text
 
 class commandThread(threading.Thread):
     def __init__(self, app):
@@ -104,8 +115,6 @@ class GMCCalculatorLayout(BoxLayout):
     def changeImage(self, img):
         self.ids.image.source = img
 
-
-
     def goo(self, btn):
         btn.text = "RUNNING ..."
         self.ids.label_suggest.text = "Please wait while we finish up loading our model. This may take a while depending on your hardware."
@@ -139,6 +148,19 @@ class GMCCalculatorLayout(BoxLayout):
         self.ids.label_command.text += "DONE"
         btn.text = "RUN AGAIN"
 
+    def show_graph_popup(self, graph_type):
+        graph_images = {
+            "Histogram": "includes/histogram.png",
+            "Confusion Matrix": "includes/confusion.png",
+            "ROC Curve": "includes/roc.png",
+            "Precision-Recall Curve": "includes/pr.png",
+            "Learning Curve": "includes/lc.png"
+        }
+        print('function called')
+        img_path = graph_images.get(graph_type, "")
+
+        popup = ImagePopup(img_source=img_path, title_text=graph_type)
+        popup.open()
 
 
 class GMCCalculatorApp(App):

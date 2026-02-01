@@ -249,6 +249,7 @@
                         color: 0, 0, 0, 1
                         background_normal: ''
                         size_hint_y: 0.15
+                        on_release: root.show_graph_popup(self.text)
                         background_color: 1, 1, 1, 1
 
                         canvas.before:
@@ -262,6 +263,7 @@
                         text: "Confusion Matrix"
                         color: 0, 0, 0, 1
                         background_normal: ''
+                        on_release: root.show_graph_popup(self.text)
                         size_hint_y: 0.15
                         background_color: 1, 1, 1, 1
 
@@ -276,6 +278,7 @@
                         text: "ROC Curve"
                         color: 0, 0, 0, 1
                         size_hint_y: 0.15
+                        on_release: root.show_graph_popup(self.text)
                         background_normal: ''
                         background_color: 1, 1, 1, 1
 
@@ -290,6 +293,7 @@
                         text: "Precision-Recall Curve"
                         color: 0, 0, 0, 1
                         background_normal: ''
+                        on_release: root.show_graph_popup(self.text)
                         size_hint_y: 0.15
                         background_color: 1, 1, 1, 1
 
@@ -304,6 +308,7 @@
                         text: "Learning Curve"
                         color: 0, 0, 0, 1
                         background_normal: ''
+                        on_release: root.show_graph_popup(self.text)
                         size_hint_y: 0.15
                         background_color: 1, 1, 1, 1
 
@@ -498,3 +503,43 @@
             Button:
                 text: 'Cancel'
                 on_press: root.fileCancel()
+
+<ImagePopup>:
+    size_hint: 0.8, 0.8
+    title: ""            # Hide the default title bar
+    separator_height: 0  # Hide the default separator line
+
+    BoxLayout:
+        orientation: 'vertical'
+
+        # --- CUSTOM HEADER ---
+        BoxLayout:
+            size_hint_y: None
+            height: dp(45)
+            padding: [dp(10), 0, dp(5), 0]
+
+            Label:
+                text: root.title_text
+                bold: True
+                font_size: '16sp'
+                text_size: self.size
+                halign: 'left'
+                valign: 'middle'
+
+            Button:
+                text: "X"
+                size_hint: None, None
+                size: dp(35), dp(35)
+                pos_hint: {'center_y': 0.5}
+                background_normal: ''
+                background_color: (0.8, 0.3, 0.3, 1) # Red close button
+                on_release: root.dismiss()
+
+        # --- IMAGE CONTENT --- #
+
+        Image:
+            source: root.img_source
+            allow_stretch: True
+            keep_ratio: True
+            # To fix the 'Deprecated' warning in your logs,
+            # you can use fit_mode: "contain" if you are on Kivy 2.3.0+

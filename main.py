@@ -36,7 +36,7 @@ class commandThread(threading.Thread):
         sleep(5)
         self.app.ids.label_command.text += " DONE \nRunning model ... "
         sleep(3)
-        self.app.ids.label_command.text += " DONE \nPredicting result ... "
+        self.app.ids.label_command.text += " \nPredicting result ... "
 
     def stop(self):
         self.stop_event.set()  # Stop signal
